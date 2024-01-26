@@ -1,0 +1,21 @@
+sudo apt update -y && sudo apt install curl gnupg unzip wget git guvcview g++ cmake ssh openssh-server v4l-utils libgtk2.0-dev neovim make -y
+
+sudo usermod -aG dialout,video eros 
+# Why add eros to the "dialout" and "video" groups? Because members of the "dialout" group can access serial ports or modem devices.
+# Why "video"? Because members of the "video" group can access camera devices.
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+sudo apt-get update -y && sudo apt-get install ros-noetic-desktop-full -y
+# Just change the ros version that u want to install
+
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+sudo rosdep init
+rosdep update
+
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+sudo apt install python-catkin-tools python-catkin-pkg git -y
